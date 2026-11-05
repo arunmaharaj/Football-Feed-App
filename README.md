@@ -1,10 +1,11 @@
 # FootyScope – Arun ⚽
 
-Live football scores, fixtures, results, match events, stats and league tables for **75+ competitions** worldwide: Premier League, LaLiga, Bundesliga, Serie A, Ligue 1, Champions League, Europa League, MLS, Liga MX, Brasileirão, Saudi Pro League, World Cup qualifiers and many more.
+Live club football scores, fixtures, results, match events, stats and league tables for 40+ competitions. The home page leads with the **Champions League, Europa League and Conference League** and **Europe's top 5 leagues**, followed by everything else playing that day (Championship, Eredivisie, Primeira Liga, MLS, Liga MX, Brasileirão, Saudi Pro League and more).
 
 ## Features
 - Live scores that auto-refresh every 30 seconds while matches are in play
-- Every competition on one page, grouped by league, with live leagues first
+- **Home page:** a *Live now* strip, then the European cups and the top 5 leagues. These are always shown: if a competition has no games on the chosen day, its card shows its next matchday or latest results instead
+- Matches load progressively, and each request falls back to ESPN directly if the Netlify proxy fails
 - **Live** filter, team/league search, and a date picker for past results and upcoming fixtures
 - Click any match for the goals, cards and substitutions timeline, plus stats such as possession and shots
 - League tables with qualification and relegation zones
