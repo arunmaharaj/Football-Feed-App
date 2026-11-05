@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#22c55e"/>
-      <stop offset="1" stop-color="#0ea5e9"/>
+      <stop offset="0" stop-color="#e6b3ff"/>
+      <stop offset="1" stop-color="#7c6bff"/>
     </linearGradient>
   </defs>
   <circle cx="32" cy="32" r="30" fill="url(#g)"/>
-  <circle cx="32" cy="32" r="20" fill="#0b1220"/>
+  <circle cx="32" cy="32" r="20" fill="#07040e"/>
   <polygon points="32,20 42,27 38,39 26,39 22,27" fill="#fff"/>
   <path d="M32 20 L32 12 M42 27 L50 24 M38 39 L43 46 M26 39 L21 46 M22 27 L14 24" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
 </svg>

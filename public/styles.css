@@ -1,36 +1,27 @@
 :root {
-  --bg: #0b1220;
-  --bg2: #0f1a2e;
-  --card: #121f36;
-  --card-hi: #182844;
-  --line: #1f3253;
-  --text: #e6edf7;
-  --muted: #8ca0bf;
-  --accent: #22c55e;
-  --accent2: #0ea5e9;
-  --live: #ef4444;
+  /* Glass Orbs theme: translucent violet glass over the WebGL orb wall (glass-orbs.js) */
+  --bg: #07040e;
+  --bg2: rgb(14 8 30 / 0.72);
+  --card: rgb(18 10 38 / 0.62);
+  --card-hi: rgb(52 26 104 / 0.45);
+  --line: rgb(194 92 255 / 0.18);
+  --text: #f3edff;
+  --muted: #b1a3d4;
+  --accent: #c25cff;
+  --accent2: #7c6bff;
+  --live: #ff4d6d;
   --gold: #fbbf24;
   --radius: 14px;
+  --glass-blur: blur(14px) saturate(140%);
   color-scheme: dark;
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #eef2f7;
-    --bg2: #ffffff;
-    --card: #ffffff;
-    --card-hi: #f3f6fb;
-    --line: #dde4ee;
-    --text: #0f172a;
-    --muted: #5b6b84;
-    color-scheme: light;
-  }
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; }
+html { background: var(--bg); }
 body {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   min-height: 100vh;
   display: flex;
@@ -120,7 +111,7 @@ main { min-width: 0; }
 [hidden] { display: none !important; }
 .tabs { display: flex; gap: 6px; margin-bottom: 14px; }
 .tab { border: 1px solid var(--line); background: var(--card); padding: 8px 18px; border-radius: 999px; cursor: pointer; font-weight: 600; font-size: 14px; }
-.tab.active { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #04111f; border-color: transparent; }
+.tab.active { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #fff; border-color: transparent; }
 
 /* ---------- cards ---------- */
 .card {
@@ -313,10 +304,45 @@ span.lg-logo.lg-dot { display: inline-block; border-radius: 50%; }
     flex: none; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
     padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font-size: 13px; font-weight: 600;
   }
-  .chip.active { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #04111f; border-color: transparent; }
+  .chip.active { background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #fff; border-color: transparent; }
 }
 .m-status, .st { white-space: nowrap; }
 @media (max-width: 560px) {
   .match { grid-template-columns: 58px 1fr auto 1fr; }
   .st { font-size: 11px; }
+}
+
+/* ---------- Glass Orbs background + glass surfaces ---------- */
+.gor__canvas {
+  position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1;
+  display: block; pointer-events: none;
+}
+/* No WebGL: a static glow in the same palette */
+html[data-gor-fallback] {
+  background:
+    radial-gradient(60% 50% at 30% 30%, color-mix(in srgb, var(--gor-glow, #c25cff) 25%, transparent), transparent 70%),
+    radial-gradient(50% 50% at 75% 70%, color-mix(in srgb, var(--gor-deep, #3a1a8a) 55%, transparent), transparent 70%),
+    var(--gor-ground, #07040e);
+  background-attachment: fixed;
+}
+.topbar, .sidebar, .card, .empty-state, .chip, .pill, .icon-btn, .tab,
+input[type="date"], input[type="search"], dialog#matchModal {
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+.card, .sidebar, .empty-state, dialog#matchModal {
+  box-shadow: 0 10px 40px rgb(0 0 0 / 0.35), inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+.status-strip, .foot { background: rgb(7 4 14 / 0.45); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); }
+.card-head { background: rgb(60 30 120 / 0.28); }
+.mh { background: linear-gradient(180deg, rgb(60 30 120 / 0.45), transparent); }
+.tl-min { background: transparent; }
+dialog#matchModal { background: rgb(16 9 34 / 0.82); }
+.match:hover, .lg-item:hover { background: rgb(194 92 255 / 0.12); }
+.lg-item.active { background: rgb(194 92 255 / 0.22); }
+.brand h1 { background: linear-gradient(90deg, #e6b3ff, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; }
+.stat-bar .h { background: var(--accent); }
+.stat-bar .a { background: #5ad1ff; }
+@media (prefers-reduced-transparency: reduce) {
+  :root { --card: #140b2a; --bg2: #0e081e; }
 }

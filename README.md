@@ -46,3 +46,14 @@ npx netlify-cli deploy --prod --dir=public
 ```
 
 Note that the `/api/espn` proxy only works with a Git or CLI deploy that reads `netlify.toml`. A drag-and-drop deploy of the `public` folder still works, because the app falls back to calling ESPN directly.
+
+## Theme: Glass Orbs
+The background is a WebGL "glass orbs" effect (`public/glass-orbs.js`): a honeycomb of glass marbles with light moving behind them. On desktop, the mouse carries a lamp behind the wall. It's a plain-JavaScript port of a React `<GlassOrbs>` component, since this site has no React or build step.
+
+You can change the palette, density and speed on the script tag in `public/index.html`:
+
+```html
+<script src="glass-orbs.js" data-glow="#c25cff" data-deep="#3a1a8a" data-ground="#07040e" data-columns="9" data-speed="1"></script>
+```
+
+It pauses when the tab is hidden, runs at about 30fps on phones, and shows a single still frame if the visitor has reduced motion turned on. If WebGL isn't available, it falls back to a static violet gradient.
