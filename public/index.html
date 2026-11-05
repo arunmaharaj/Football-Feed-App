@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FootyScope – Arun | Live Football Scores</title>
+  <meta name="description" content="FootyScope by Arun – live football scores, fixtures, results and league tables from 50+ competitions worldwide." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="favicon.svg" alt="" class="brand-logo" />
+      <div>
+        <h1>FootyScope <span class="brand-by">– Arun</span></h1>
+        <p class="brand-sub">Live football scores worldwide</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="datebar">
+        <button class="icon-btn" id="prevDay" aria-label="Previous day">‹</button>
+        <button class="pill" id="todayBtn">Today</button>
+        <input type="date" id="datePicker" aria-label="Pick a date" />
+        <button class="icon-btn" id="nextDay" aria-label="Next day">›</button>
+      </div>
+      <div class="filters">
+        <button class="pill toggle" id="liveToggle" aria-pressed="false"><span class="dot"></span> Live</button>
+        <input type="search" id="search" placeholder="Search team or league…" aria-label="Search teams or leagues" />
+      </div>
+    </div>
+  </header>
+
+  <div class="status-strip">
+    <span id="statusText">Loading…</span>
+    <button class="link-btn" id="refreshBtn">↻ Refresh</button>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="Leagues">
+      <div class="sidebar-head">Competitions</div>
+      <nav id="leagueList"></nav>
+    </aside>
+
+    <main id="main">
+      <div class="tabs" id="tabs" hidden>
+        <button class="tab active" data-tab="matches">Matches</button>
+        <button class="tab" data-tab="table">Table</button>
+      </div>
+      <div id="content"></div>
+    </main>
+  </div>
+
+  <dialog id="matchModal">
+    <div class="modal-inner">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </dialog>
+
+  <footer class="foot">
+    FootyScope – Arun · Data: ESPN public feeds · Auto-refreshes every 30s while live matches are on
+  </footer>
+
+  <script src="leagues.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

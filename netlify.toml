@@ -1,0 +1,24 @@
+# FootyScope – Arun · Netlify config
+# Static site, no build step. Publishes the /public folder.
+[build]
+  publish = "public"
+  command = ""
+
+# Same-origin proxy to ESPN's public soccer API (avoids browser CORS issues).
+# /api/espn/site/v2/sports/soccer/eng.1/scoreboard -> https://site.api.espn.com/apis/site/v2/...
+[[redirects]]
+  from = "/api/espn/*"
+  to = "https://site.api.espn.com/apis/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
