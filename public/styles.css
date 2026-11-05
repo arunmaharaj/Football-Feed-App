@@ -1,18 +1,18 @@
 :root {
-  /* Glass Orbs theme: translucent violet glass over the WebGL orb wall (glass-orbs.js) */
-  --bg: #07040e;
-  --bg2: rgb(14 8 30 / 0.72);
-  --card: rgb(18 10 38 / 0.62);
-  --card-hi: rgb(52 26 104 / 0.45);
-  --line: rgb(194 92 255 / 0.18);
-  --text: #f3edff;
-  --muted: #b1a3d4;
-  --accent: #c25cff;
-  --accent2: #7c6bff;
-  --live: #ff4d6d;
+  /* Isoline Bloom theme: dark glass over the WebGL contour bloom (isoline-bloom.js) */
+  --bg: #000000;
+  --bg2: rgb(6 2 14 / 0.7);
+  --card: rgb(10 4 22 / 0.58);
+  --card-hi: rgb(60 16 70 / 0.4);
+  --line: rgb(255 63 196 / 0.16);
+  --text: #f7eefc;
+  --muted: #b8a6c9;
+  --accent: #ff3fc4;
+  --accent2: #7a3cff;
+  --live: #ff2448;
   --gold: #fbbf24;
   --radius: 14px;
-  --glass-blur: blur(14px) saturate(140%);
+  --glass-blur: blur(6px) saturate(150%);
   color-scheme: dark;
 }
 
@@ -312,17 +312,17 @@ span.lg-logo.lg-dot { display: inline-block; border-radius: 50%; }
   .st { font-size: 11px; }
 }
 
-/* ---------- Glass Orbs background + glass surfaces ---------- */
-.gor__canvas {
+/* ---------- Isoline Bloom background + glass surfaces ---------- */
+.isb__canvas {
   position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1;
   display: block; pointer-events: none;
 }
-/* No WebGL: a static glow in the same palette */
-html[data-gor-fallback] {
+/* No WebGL2: a still picture of the same glow */
+html[data-isb-fallback] {
   background:
-    radial-gradient(60% 50% at 30% 30%, color-mix(in srgb, var(--gor-glow, #c25cff) 25%, transparent), transparent 70%),
-    radial-gradient(50% 50% at 75% 70%, color-mix(in srgb, var(--gor-deep, #3a1a8a) 55%, transparent), transparent 70%),
-    var(--gor-ground, #07040e);
+    radial-gradient(38% 38% at 50% 50%, var(--isb-core, #1b0b7a) 0%, transparent 70%),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 22px, color-mix(in srgb, var(--isb-mid, #ff3fc4) 30%, transparent) 23px, transparent 25px),
+    var(--isb-bg, #000);
   background-attachment: fixed;
 }
 .topbar, .sidebar, .card, .empty-state, .chip, .pill, .icon-btn, .tab,
@@ -331,18 +331,18 @@ input[type="date"], input[type="search"], dialog#matchModal {
   backdrop-filter: var(--glass-blur);
 }
 .card, .sidebar, .empty-state, dialog#matchModal {
-  box-shadow: 0 10px 40px rgb(0 0 0 / 0.35), inset 0 1px 0 rgb(255 255 255 / 0.06);
+  box-shadow: 0 10px 40px rgb(0 0 0 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.06);
 }
-.status-strip, .foot { background: rgb(7 4 14 / 0.45); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); }
-.card-head { background: rgb(60 30 120 / 0.28); }
-.mh { background: linear-gradient(180deg, rgb(60 30 120 / 0.45), transparent); }
+.status-strip, .foot { background: rgb(0 0 0 / 0.4); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); }
+.card-head { background: rgb(122 60 255 / 0.12); }
+.mh { background: linear-gradient(180deg, rgb(122 60 255 / 0.3), transparent); }
 .tl-min { background: transparent; }
-dialog#matchModal { background: rgb(16 9 34 / 0.82); }
-.match:hover, .lg-item:hover { background: rgb(194 92 255 / 0.12); }
-.lg-item.active { background: rgb(194 92 255 / 0.22); }
-.brand h1 { background: linear-gradient(90deg, #e6b3ff, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; }
-.stat-bar .h { background: var(--accent); }
-.stat-bar .a { background: #5ad1ff; }
+dialog#matchModal { background: rgb(8 3 18 / 0.86); }
+.match:hover, .lg-item:hover { background: rgb(255 63 196 / 0.1); }
+.lg-item.active { background: rgb(255 63 196 / 0.18); }
+.brand h1 { background: linear-gradient(90deg, #ffd6f6, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; }
+.stat-bar .h { background: var(--accent2); }
+.stat-bar .a { background: var(--accent); }
 @media (prefers-reduced-transparency: reduce) {
-  :root { --card: #140b2a; --bg2: #0e081e; }
+  :root { --card: #0b0418; --bg2: #08030f; }
 }

@@ -47,13 +47,21 @@ npx netlify-cli deploy --prod --dir=public
 
 Note that the `/api/espn` proxy only works with a Git or CLI deploy that reads `netlify.toml`. A drag-and-drop deploy of the `public` folder still works, because the app falls back to calling ESPN directly.
 
-## Theme: Glass Orbs
-The background is a WebGL "glass orbs" effect (`public/glass-orbs.js`): a honeycomb of glass marbles with light moving behind them. On desktop, the mouse carries a lamp behind the wall. It's a plain-JavaScript port of a React `<GlassOrbs>` component, since this site has no React or build step.
+## Theme: Isoline Bloom
+The background is a WebGL2 "isoline bloom" (`public/isoline-bloom.js`): a slowly morphing lobed shape drawn only by glowing contour lines. The lines are violet, magenta and ember red, around a deep indigo core.
 
-You can change the palette, density and speed on the script tag in `public/index.html`:
+- On desktop, the mouse acts as a lens: the lines bulge and brighten under it, and moving fast speeds up the outward flow.
+- Clicking or tapping sends a shock pulse through the rings.
+- With no mouse on it, the lens wanders on its own.
+
+It's a plain-JavaScript port of a React `<IsolineBloom>` component, since this site has no React or build step.
+
+You can change the look on the script tag in `public/index.html`:
 
 ```html
-<script src="glass-orbs.js" data-glow="#c25cff" data-deep="#3a1a8a" data-ground="#07040e" data-columns="9" data-speed="1"></script>
+<script src="isoline-bloom.js" data-preset="ultraviolet"></script>
+<!-- presets: ultraviolet, solar-flare, abyss, aurora, ghost -->
+<!-- fine-tune with JSON: data-params='{"rings":14,"scale":0.6,"flow":0.3}' -->
 ```
 
-It pauses when the tab is hidden, runs at about 30fps on phones, and shows a single still frame if the visitor has reduced motion turned on. If WebGL isn't available, it falls back to a static violet gradient.
+It pauses when the tab is hidden and runs at about 30fps with lower resolution on phones. Visitors who have reduced motion turned on see a single still frame. If WebGL2 isn't available, it falls back to a static gradient of rings.
